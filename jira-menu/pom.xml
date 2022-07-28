@@ -10,12 +10,12 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <organization>
-        <name>Example Company</name>
-        <url>http://www.example.com/</url>
+        <name>Home Credit Bank</name>
+        <url>http://www.homecredit.ru/</url>
     </organization>
 
-    <name>jira-menu</name>
-    <description>This is the ru.homecredit:jira-menu plugin for Atlassian JIRA.</description>
+    <name>Jira top menu bar tree plugin</name>
+    <description>Plugin adds specified items to new top bar menu elements</description>
     <packaging>atlassian-plugin</packaging>
 
     <dependencies>
@@ -74,6 +74,25 @@
             <version>2.2.2-atlassian-1</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.6</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+            <scope>provided</scope>
+        </dependency>
+
         <!-- Uncomment to use TestKit in your project. Details at https://bitbucket.org/atlassian/jira-testkit -->
         <!-- You can read more about TestKit at https://developer.atlassian.com/display/JIRADEV/Plugin+Tutorial+-+Smarter+integration+testing+with+TestKit -->
         <!--
@@ -96,6 +115,11 @@
                 <configuration>
                     <productVersion>${jira.version}</productVersion>
                     <productDataVersion>${jira.version}</productDataVersion>
+                    <!-- A plugin specific log4j.properties file does not get
+                    picked up using this method once you deploy your plugin to
+                    another stand alone server. It only works using atlas-run
+                    or atlas-debug -->
+                    <log4jProperties>src/main/resources/log4j.properties</log4jProperties>
                     <!-- Uncomment to install TestKit backdoor in JIRA. -->
                     <!--
                     <pluginArtifacts>
@@ -106,16 +130,22 @@
                         </pluginArtifact>
                     </pluginArtifacts>
                     -->
+                    <jvmArgs>-Xmx2g</jvmArgs>
                     <enableQuickReload>true</enableQuickReload>
-
+                    <systemPropertyVariables><!-- missing in the generated pom.xml altogether, not sure why -->
+                        <atlassian.dev.mode>false</atlassian.dev.mode><!-- default: true -->
+                        <atlassian.disable.caches>false</atlassian.disable.caches><!-- default: true when the one above is true -->
+                    </systemPropertyVariables>
                     <!-- See here for an explanation of default instructions: -->
                     <!-- https://developer.atlassian.com/docs/advanced-topics/configuration-of-instructions-in-atlassian-plugins -->
                     <instructions>
                         <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
 
-                        <!-- Add package to export here -->
+                        <!-- Add package to export here
+                            ${atlassian.plugin.key}.api
+                        -->
                         <Export-Package>
-                            ru.homecredit.api,
+                            ru.homecredit.api
                         </Export-Package>
 
                         <!-- Add package import here -->
