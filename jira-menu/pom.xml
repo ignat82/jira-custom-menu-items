@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>ru.homecredit</groupId>
     <artifactId>jira-menu</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-
     <organization>
         <name>Home Credit Bank</name>
         <url>http://www.homecredit.ru/</url>
     </organization>
-
-    <name>Jira top menu bar tree plugin</name>
+    <name>Jira top nav bar custom menu tree plugin</name>
     <description>Plugin adds specified items to new top bar menu elements</description>
     <packaging>atlassian-plugin</packaging>
-
     <dependencies>
         <dependency>
             <groupId>com.atlassian.jira</groupId>
@@ -41,7 +35,6 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>com.atlassian.plugin</groupId>
             <artifactId>atlassian-spring-scanner-annotation</artifactId>
@@ -54,7 +47,6 @@
             <version>1</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- WIRED TEST RUNNER DEPENDENCIES -->
         <dependency>
             <groupId>com.atlassian.plugins</groupId>
@@ -73,7 +65,7 @@
             <artifactId>gson</artifactId>
             <version>2.2.2-atlassian-1</version>
         </dependency>
-
+        <!--
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -92,7 +84,7 @@
             <version>1.18.24</version>
             <scope>provided</scope>
         </dependency>
-
+        -->
         <!-- Uncomment to use TestKit in your project. Details at https://bitbucket.org/atlassian/jira-testkit -->
         <!-- You can read more about TestKit at https://developer.atlassian.com/display/JIRADEV/Plugin+Tutorial+-+Smarter+integration+testing+with+TestKit -->
         <!--
@@ -103,8 +95,13 @@
             <scope>test</scope>
         </dependency>
         -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>1.8.5</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-
     <build>
         <plugins>
             <plugin>
@@ -118,8 +115,9 @@
                     <!-- A plugin specific log4j.properties file does not get
                     picked up using this method once you deploy your plugin to
                     another stand alone server. It only works using atlas-run
-                    or atlas-debug -->
+                    or atlas-debug
                     <log4jProperties>src/main/resources/log4j.properties</log4jProperties>
+                    -->
                     <!-- Uncomment to install TestKit backdoor in JIRA. -->
                     <!--
                     <pluginArtifacts>
@@ -132,29 +130,26 @@
                     -->
                     <jvmArgs>-Xmx2g</jvmArgs>
                     <enableQuickReload>true</enableQuickReload>
-                    <systemPropertyVariables><!-- missing in the generated pom.xml altogether, not sure why -->
-                        <atlassian.dev.mode>false</atlassian.dev.mode><!-- default: true -->
-                        <atlassian.disable.caches>false</atlassian.disable.caches><!-- default: true when the one above is true -->
+                    <systemPropertyVariables>
+                        <!-- missing in the generated pom.xml altogether, not sure why -->
+                        <atlassian.dev.mode>false</atlassian.dev.mode>
+                        <!-- default: true -->
+                        <atlassian.disable.caches>false</atlassian.disable.caches>
+                        <!-- default: true when the one above is true -->
                     </systemPropertyVariables>
                     <!-- See here for an explanation of default instructions: -->
                     <!-- https://developer.atlassian.com/docs/advanced-topics/configuration-of-instructions-in-atlassian-plugins -->
                     <instructions>
                         <Atlassian-Plugin-Key>${atlassian.plugin.key}</Atlassian-Plugin-Key>
-
                         <!-- Add package to export here
                             ${atlassian.plugin.key}.api
                         -->
-                        <Export-Package>
-                            ru.homecredit.api
-                        </Export-Package>
-
+                        <Export-Package>ru.homecredit.api</Export-Package>
                         <!-- Add package import here -->
                         <Import-Package>
                             org.springframework.osgi.*;resolution:="optional",
                             org.eclipse.gemini.blueprint.*;resolution:="optional",
-                            *
-                        </Import-Package>
-
+                            *</Import-Package>
                         <!-- Ensure plugin is spring powered -->
                         <Spring-Context>*</Spring-Context>
                     </instructions>
@@ -178,7 +173,6 @@
             </plugin>
         </plugins>
     </build>
-
     <properties>
         <jira.version>7.13.0</jira.version>
         <amps.version>8.1.2</amps.version>
@@ -192,5 +186,4 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-
 </project>

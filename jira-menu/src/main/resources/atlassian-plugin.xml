@@ -1,24 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2">
-    <plugin-info>
-        <description>${project.description}</description>
-        <version>${project.version}</version>
-        <vendor name="${project.organization.name}" url="${project.organization.url}" />
-        <param name="plugin-icon">images/pluginIcon.png</param>
-        <param name="plugin-logo">images/pluginLogo.png</param>
-    </plugin-info>
+  <plugin-info>
+    <description>${project.description}</description>
+    <version>${project.version}</version>
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>
+    <param name="plugin-icon">images/pluginIcon.png</param>
+    <param name="plugin-logo">images/pluginLogo.png</param>
+  </plugin-info>
+  <!-- add our i18n resource -->
+  <resource type="i18n" name="i18n" location="jira-menu"/>
+  <!-- add our web resources -->
+  <web-resource key="jira-menu-resources" name="jira-menu Web Resources">
+    <dependency>com.atlassian.auiplugin:ajs</dependency>
+    <resource type="download" name="jira-menu.css" location="/css/jira-menu.css"/>
+    <resource type="download" name="jira-menu.js" location="/js/jira-menu.js"/>
+    <resource type="download" name="images/" location="/images"/>
+    <context>atl.general</context>
+  </web-resource>
 
-    <!-- add our i18n resource -->
-    <resource type="i18n" name="i18n" location="jira-menu"/>
-    
-    <!-- add our web resources -->
-    <web-resource key="jira-menu-resources" name="jira-menu Web Resources">
-        <dependency>com.atlassian.auiplugin:ajs</dependency>
-        
-        <resource type="download" name="jira-menu.css" location="/css/jira-menu.css"/>
-        <resource type="download" name="jira-menu.js" location="/js/jira-menu.js"/>
-        <resource type="download" name="images/" location="/images"/>
+  <web-item
+          name="bigs-top-menu-bar-item" i18n-name-key="bigs-top-menu-bar-item.name"
+          key="bigs-top-menu-bar-item"
+          section="system.top.navigation.bar" weight="1000">
+    <description key="bigs-top-menu-bar-item.description"/>
+    <label key="bigs-top-menu-bar-item.label"/>
+    <link linkId="bigs-top-menu-bar-item-link"/>
+  </web-item>
+    <web-section
+            name="web-section-big-picture" i18n-name-key="web-section-big-picture.name"
+            key="web-section-big-picture"
+            location="bigs-top-menu-bar-item-link" weight="1000">
+      <description key="web-section-big-picture.description"/>
+      <label key="web-section-big-picture.label"/>
+    </web-section>
+      <web-item
+              name="subitem-picture-program-manager" i18n-name-key="subitem-picture-program-manager.name"
+              key="subitem-picture-program-manager"
+              section="bigs-top-menu-bar-item-link/web-section-big-picture" weight="1000">
+        <description key="subitem-picture-program-manager.description"/>
+        <label key="subitem-picture-program-manager.label"/>
+        <link linkId="subitem-picture-program-manager-link"
+        >plugins/servlet/softwareplant-bigpicture/manage</link>
+      </web-item>
+      <web-item
+              name="subitem-picture-administaration" i18n-name-key="subitem-picture-administaration.name"
+              key="subitem-picture-administaration"
+              section="bigs-top-menu-bar-item-link/web-section-big-picture" weight="1000">
+        <description key="subitem-picture-administaration.description"/>
+        <label key="subitem-picture-administaration.label"/>
+        <link linkId="subitem-picture-administaration-link"
+        >plugins/servlet/softwareplant-bigpicture/administration</link>
+      </web-item>
+      <web-item
+              name="subitem-picture-documentation" i18n-name-key="subitem-picture-documentation.name"
+              key="subitem-picture-documentation"
+              section="bigs-top-menu-bar-item-link/web-section-big-picture" weight="1000">
+        <description key="subitem-picture-documentation.description"/>
+        <label key="subitem-picture-documentation.label"/>
+        <link linkId="subitem-picture-documentation-link"
+        >https://softwareplant.atlassian.net/wiki/display/BP/BigPicture+6+Documentation</link>
+      </web-item>
+  <web-section
+          name="web-section-big-gant" i18n-name-key="web-section-big-gant.name"
+          key="web-section-big-gant"
+          location="bigs-top-menu-bar-item-link" weight="1000">
+    <description key="web-section-big-gant.description"/>
+    <label key="web-section-big-gant.label"/>
+  </web-section>
 
-        <context>jira-menu</context>
-    </web-resource>
-    
+  <web-item
+          name="subitem-gant-program-manager" i18n-name-key="subitem-gant-program-manager.name"
+          key="subitem-gant-program-manager"
+          section="bigs-top-menu-bar-item-link/web-section-big-gant" weight="1000">
+    <description key="subitem-gant-program-manager.description"/>
+    <label key="subitem-gant-program-manager.label"/>
+    <link linkId="subitem-gant-program-manager-link"
+    >plugins/servlet/softwareplant-biggantt/manage</link>
+  </web-item>
+  <web-item
+          name="subitem-gant-administration" i18n-name-key="subitem-gant-administration.name"
+          key="subitem-gant-administration"
+          section="bigs-top-menu-bar-item-link/web-section-big-gant" weight="1000">
+    <description key="subitem-gant-administration.description"/>
+    <label key="subitem-gant-administration.label"/>
+    <link linkId="subitem-gant-administration-link"
+    >plugins/servlet/softwareplant-biggantt/administration</link>
+  </web-item>
+  <web-item
+          name="subitem-gant-security" i18n-name-key="subitem-gant-security.name"
+          key="subitem-gant-security"
+          section="bigs-top-menu-bar-item-link/web-section-big-gant" weight="1000">
+    <description key="subitem-gant-security.description"/>
+    <label key="subitem-gant-security.label"/>
+    <link linkId="subitem-gant-security-link"
+    >plugins/servlet/softwareplant-biggantt/security</link>
+  </web-item>
+  <web-item
+          name="subitem-gant-documentation" i18n-name-key="subitem-gant-documentation.name"
+          key="subitem-gant-documentation"
+          section="bigs-top-menu-bar-item-link/web-section-big-gant" weight="1000">
+    <description key="subitem-gant-documentation.description"/>
+    <label key="subitem-gant-documentation.label"/>
+    <link linkId="subitem-gant-documentation-link"
+    >https://softwareplant.com/doc/app/biggantt</link>
+  </web-item>
+
+  <web-item
+          name="HCFBTopMenuBarItem" i18n-name-key="hcfb-top-menu-bar-item.name"
+          key="hcfb-top-menu-bar-item"
+          section="system.top.navigation.bar" weight="1000">
+    <description key="hcfb-top-menu-bar-item.description"/>
+    <label key="hcfb-top-menu-bar-item.label"/>
+    <link linkId="hcfb-top-menu-bar-item-link"/>
+  </web-item>
+  <web-section
+          name="web-section-link-rules" i18n-name-key="web-section-link-rules.name"
+          key="web-section-link-rules"
+          location="hcfb-top-menu-bar-item-link" weight="1000">
+    <description key="web-section-link-rules.description"/>
+    <label key="web-section-link-rules.label"/>
+  </web-section>
+  <web-item
+          name="subitem-link-rules" i18n-name-key="subitem-link-rules.name"
+          key="subitem-link-rules"
+          section="hcfb-top-menu-bar-item-link/web-section-link-rules" weight="1000">
+    <description key="subitem-link-rules.description"/>
+    <label key="subitem-link-rules.label"/>
+    <link linkId="subitem-link-rules-link"
+    >secure/LinkRulesMatrixAction.jspa</link>
+  </web-item>
+
+  <web-section
+          name="web-section-dicts" i18n-name-key="web-section-dicts.name"
+          key="web-section-dicts"
+          location="hcfb-top-menu-bar-item-link" weight="1000">
+    <description key="web-section-dicts.description"/>
+    <label key="web-section-dicts.label"/>
+  </web-section>
+
+  <web-item
+          name="subitem-issue-type-department-user" i18n-name-key="subitem-issue-type-department-user.name"
+          key="subitem-issue-type-department-user"
+          section="hcfb-top-menu-bar-item-link/web-section-dicts" weight="1000">
+    <description key="subitem-issue-type-department-user.description"/>
+    <label key="subitem-issue-type-department-user.label"/>
+    <link linkId="subitem-issue-type-department-user-link"
+    >secure/ApprDeptsEditorAction.jspa#userdeptissuetype</link>
+  </web-item>
+  <web-item
+          name="subitem-issue-type-doc-type-user" i18n-name-key="subitem-issue-type-doc-type-user.name"
+          key="subitem-issue-type-doc-type-user"
+          section="hcfb-top-menu-bar-item-link/web-section-dicts" weight="1000">
+    <description key="subitem-issue-type-doc-type-user.description"/>
+    <label key="subitem-issue-type-doc-type-user.label"/>
+    <link linkId="subitem-issue-type-doc-type-user-link"
+    >secure/ApprDeptsEditorAction.jspa#doctypeissuetypedept</link>
+  </web-item>
+
 </atlassian-plugin>
+
