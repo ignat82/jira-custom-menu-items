@@ -41,7 +41,7 @@
         <description key="subitem-picture-program-manager.description"/>
         <label key="subitem-picture-program-manager.label"/>
         <link linkId="subitem-picture-program-manager-link"
-        >softwareplant-bigpicture/manage</link>
+        >${baseurl}/plugins/servlet/softwareplant-bigpicture/manage</link>
       </web-item>
       <web-item
               name="subitem-picture-administaration" i18n-name-key="subitem-picture-administaration.name"
@@ -50,7 +50,7 @@
         <description key="subitem-picture-administaration.description"/>
         <label key="subitem-picture-administaration.label"/>
         <link linkId="subitem-picture-administaration-link"
-        >softwareplant-bigpicture/administration</link>
+        >${baseurl}/plugins/servlet/softwareplant-bigpicture/administration</link>
       </web-item>
       <web-item
               name="subitem-picture-documentation" i18n-name-key="subitem-picture-documentation.name"
@@ -76,7 +76,7 @@
     <description key="subitem-gant-program-manager.description"/>
     <label key="subitem-gant-program-manager.label"/>
     <link linkId="subitem-gant-program-manager-link"
-    >softwareplant-biggantt/manage</link>
+    >${baseurl}/plugins/servlet/softwareplant-biggantt/manage</link>
   </web-item>
   <web-item
           name="subitem-gant-administration" i18n-name-key="subitem-gant-administration.name"
@@ -85,7 +85,7 @@
     <description key="subitem-gant-administration.description"/>
     <label key="subitem-gant-administration.label"/>
     <link linkId="subitem-gant-administration-link"
-    >softwareplant-biggantt/administration</link>
+    >${baseurl}/plugins/servlet/softwareplant-biggantt/administration</link>
   </web-item>
   <web-item
           name="subitem-gant-security" i18n-name-key="subitem-gant-security.name"
@@ -94,7 +94,7 @@
     <description key="subitem-gant-security.description"/>
     <label key="subitem-gant-security.label"/>
     <link linkId="subitem-gant-security-link"
-    >softwareplant-biggantt/security</link>
+    >${baseurl}/plugins/servlet/softwareplant-biggantt/security</link>
   </web-item>
   <web-item
           name="subitem-gant-documentation" i18n-name-key="subitem-gant-documentation.name"
